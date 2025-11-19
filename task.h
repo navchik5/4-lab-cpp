@@ -1,5 +1,5 @@
-#ifndef task_h
-#define task_h
+#ifndef TASK_H
+#define TASK_H
 
 #include <iostream>
 
@@ -11,6 +11,7 @@ class RightTriangle {
 
   double getA() const;
   double getB() const;
+
   void setA(double a);
   void setB(double b);
 
@@ -28,8 +29,8 @@ class RightTriangle {
   friend std::ostream& operator<<(std::ostream& out, const RightTriangle& triangle);
 
  private:
-  double a;
-  double b;
+  double a_;
+  double b_;
 };
 
 #endif
