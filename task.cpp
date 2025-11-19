@@ -1,6 +1,6 @@
 #include "task.h"
 
-RightTriangle::RightTriangle() : a(1.0), b(1.0) {}
+RightTriangle::RightTriangle() : a_(1.0), b_(1.0) {}
 
 RightTriangle::RightTriangle(double a, double b) {
   setA(a);
@@ -8,53 +8,55 @@ RightTriangle::RightTriangle(double a, double b) {
 }
 
 RightTriangle::RightTriangle(const RightTriangle& other)
-    : a(other.a), b(other.b) {}
+    : a_(other.a_), b_(other.b_) {}
 
-double RightTriangle::getA() const { return a; }
+double RightTriangle::getA() const { return a_; }
 
-double RightTriangle::getB() const { return b; }
+double RightTriangle::getB() const { return b_; }
 
 void RightTriangle::setA(double a) {
   if (a <= 0) {
-    std::cout << "Îøèáêà: êàòåò äîëæåí áûòü ïîëîæèòåëüíûì ÷èñëîì!" << std::endl;
-    this->a = 1.0;
+    std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐºÐ°Ñ‚ÐµÑ‚ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±Ñ‹Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¼ Ñ‡Ð¸ÑÐ»Ð¾Ð¼!" << std::endl;
+    this->a_ = 1.0;
   } else {
-    this->a = a;
+    this->a_ = a;
   }
 }
 
 void RightTriangle::setB(double b) {
   if (b <= 0) {
-    std::cout << "Îøèáêà: êàòåò äîëæåí áûòü ïîëîæèòåëüíûì ÷èñëîì!" << std::endl;
-    this->b = 1.0;
+    std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: ÐºÐ°Ñ‚ÐµÑ‚ Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±Ñ‹Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¼ Ñ‡Ð¸ÑÐ»Ð¾Ð¼!" << std::endl;
+    this->b_ = 1.0;
   } else {
-    this->b = b;
+    this->b_ = b;
   }
 }
 
-double RightTriangle::calculateArea() const { return (a * b) / 2.0; }
+double RightTriangle::calculateArea() const { return (a_ * b_) / 2.0; }
 
 RightTriangle& RightTriangle::operator++() {
-  a *= 2.0;
-  b *= 2.0;
+  a_ *= 2.0;
+  b_ *= 2.0;
   return *this;
 }
 
 RightTriangle& RightTriangle::operator--() {
-  a /= 2.0;
-  b /= 2.0;
+  a_ /= 2.0;
+  b_ /= 2.0;
   return *this;
 }
 
 RightTriangle::operator double() const {
-  if (static_cast<bool>(*this)) {
+  if (a_ > 0 && b_ > 0) {  
     return calculateArea();
   } else {
-    return -1.0;
+    return -1.0;  
   }
 }
 
-RightTriangle::operator bool() const { return (a > 0 && b > 0); }
+RightTriangle::operator bool() const {
+  return (a_ > 0 && b_ > 0);  
+}
 
 bool RightTriangle::operator<=(const RightTriangle& other) const {
   return this->calculateArea() <= other.calculateArea();
@@ -65,6 +67,6 @@ bool RightTriangle::operator>=(const RightTriangle& other) const {
 }
 
 std::ostream& operator<<(std::ostream& out, const RightTriangle& triangle) {
-  out << "Òðåóãîëüíèê ñ êàòåòàìè: a = " << triangle.a << ", b = " << triangle.b;
+  out << "Ð¢Ñ€ÐµÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº Ñ ÐºÐ°Ñ‚ÐµÑ‚Ð°Ð¼Ð¸: a = " << triangle.a_ << ", b = " << triangle.b_;
   return out;
 }
